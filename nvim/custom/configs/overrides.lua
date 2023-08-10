@@ -13,6 +13,15 @@ M.treesitter = {
     "javascript",
     "sql",
     "docker",
+    "yaml",
+    "json",
+    "c",
+    "typescript",
+    "tsx",
+    "latex",
+    "make",
+    "dockerfile",
+    "gitignore",
   },
   indent = {
     enable = true,
@@ -30,18 +39,28 @@ M.mason = {
 
     -- python stuff
     "pyright",
-    "ruff",
+    "flake8", -- linter: other popular linters - mypy, yapf, ruff
+    "black",
+    "isort",
+    "debugpy",
 
     -- go stuff
     "gopls",
     "gofumpt",
     "golines",
 
+    -- JSON stuff
+    "json-lsp",
+
+    -- YAML stuff
+    "yaml-language-server",
+
     -- Web stuff
     "html-lsp",
-    "json-lsp",
     "css-lsp",
     "typescript-language-server",
+    "angular-language-server",
+    "eslint_d",
 
     -- SQL stuff
     "sqlls",
@@ -52,6 +71,9 @@ M.mason = {
     -- Docker stuff
     "docker-compose-language-service",
     "dockerfile-language-server",
+
+    -- LaTeX
+    "ltex-ls",
   },
 }
 
