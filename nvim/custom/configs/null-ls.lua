@@ -52,7 +52,7 @@ local sources = {
 		extra_args = { "--line-length=120", "--fast" },
 	}),
 	formatting.isort,
-	lint.flake8,
+	lint.flake8.with({ extra_args = { "--max-line-length", "120" } }),
 
 	-- Web stuff
 	formatting.eslint_d,
