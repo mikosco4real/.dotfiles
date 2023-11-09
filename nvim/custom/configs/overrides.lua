@@ -23,6 +23,7 @@ M.treesitter = {
 		"dockerfile",
 		"gitignore",
 		"tailwindcss",
+		"rust",
 	},
 	indent = {
 		enable = true,
@@ -76,6 +77,9 @@ M.mason = {
 
 		-- LaTeX
 		"ltex-ls",
+
+		-- Rust
+		"rust-analyzer",
 	},
 }
 
