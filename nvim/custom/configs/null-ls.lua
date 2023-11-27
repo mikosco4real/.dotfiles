@@ -56,6 +56,9 @@ local sources = {
 
 	-- Web stuff
 	formatting.eslint_d,
+
+	-- Rust
+	formatting.rustfmt,
 }
 
 null_ls.setup({
