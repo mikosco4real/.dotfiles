@@ -1,4 +1,5 @@
 local M = {}
+local on_attach = require("plugins.configs.lspconfig").on_attach
 
 M.treesitter = {
   ensure_installed = {
@@ -80,7 +81,8 @@ M.mason = {
     "ltex-ls",
 
     -- Rust
-    "rustfmt",
+    "rust-analyzer",
+    -- using rust.vim and rustaceanvim plugins
   },
 }
 
@@ -97,6 +99,18 @@ M.nvimtree = {
         git = true,
       },
     },
+  },
+}
+
+-- rustaceanvim setup
+M.rustaceanvim = {
+  server = { on_attach = on_attach },
+  default_settings = {
+    ["rust-analyzer"] = {
+      cargo = {
+        allFeatures = true,
+      }
+    }
   },
 }
 
