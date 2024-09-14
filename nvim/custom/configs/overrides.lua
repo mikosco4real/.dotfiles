@@ -83,6 +83,9 @@ M.mason = {
     -- Rust
     "rust-analyzer",
     -- using rust.vim and rustaceanvim plugins
+    --
+    -- PHP
+    "phpactor"
   },
 }
 
