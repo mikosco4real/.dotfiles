@@ -24,6 +24,7 @@ opts.ensure_installed = {
     "typescript",
     "vue",
     "yaml",
+    "toml",
 }
 
 return opts
