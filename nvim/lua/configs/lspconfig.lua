@@ -21,7 +21,7 @@ local servers = {
     "ltex",
     "jsonls",
     "docker_compose_language_service",
-    "rust-analyzer",
+    "rust_analyzer",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
