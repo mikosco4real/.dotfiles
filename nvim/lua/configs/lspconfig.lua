@@ -14,7 +14,7 @@ local servers = {
     "yamlls",
     "dockerls",
     "tailwindcss",
-    "postgres_lsp",
+    "sqlls",
     "pasls",
     "nginx_language_server",
     "markdown_oxide",

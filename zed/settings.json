@@ -12,6 +12,9 @@
 //   "buffer_font_size": 16
 // }
 {
+  "features": {
+    "inline_completion_provider": "supermaven"
+  },
   "assistant": {
     "default_model": {
       "provider": "zed.dev",

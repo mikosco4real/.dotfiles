@@ -6,6 +6,9 @@ local options = {
         vue = { "prettierd", lsp_format = "fallback" },
         ts = { "prettierd", "eslint_d" },
         json = { "jd" },
+        yaml = { "yamlfmt", "yamllint" },
+        yml = { "yamlfmt", "yamllint" },
+        sql = { "sqlfmt" },
     },
 
     format_on_save = {
