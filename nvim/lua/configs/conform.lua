@@ -8,7 +8,7 @@ local options = {
         json = { "jd" },
         yaml = { "yamlfmt", "yamllint" },
         yml = { "yamlfmt", "yamllint" },
-        sql = { "sqlfmt" },
+        sql = { "sqruff" },
     },
 
     format_on_save = {
