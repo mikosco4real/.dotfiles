@@ -41,9 +41,9 @@ lspconfig.ts_ls.setup {
 }
 
 -- configure sqls
-lspconfig.sqls.setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-    single_file_support = true,
-}
+-- lspconfig.sqls.setup {
+--     on_attach = nvlsp.on_attach,
+--     on_init = nvlsp.on_init,
+--     capabilities = nvlsp.capabilities,
+--     single_file_support = true,
+-- }

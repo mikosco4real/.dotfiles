@@ -13,12 +13,12 @@
 // }
 {
   "features": {
-    "edit_prediction_provider": "supermaven"
+    "edit_prediction_provider": "zed"
   },
   "assistant": {
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+      "model": "claude-3-7-sonnet-latest"
     },
     "version": "2"
   },
@@ -26,15 +26,15 @@
   "tab_size": 2,
   "preferred_line_length": 120,
   "soft_wrap": "editor_width",
-  "ui_font_size": 16,
-  "buffer_font_size": 14,
-  "buffer_font_family": "Zed Mono",
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "autosave": "on_focus_change",
   "format_on_save": "on",
   "vim_mode": true,
   "projects_online_by_default": true,
   "terminal": {
-    "font_family": "MesloLGM Nerd Font Propo",
+    "font_family": "JetBrainsMono Nerd Font",
     "blinking": "off"
   },
   "language_overrides": {
