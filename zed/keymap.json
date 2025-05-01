@@ -34,5 +34,12 @@
     "bindings": {
       "ctrl-n": "workspace::ToggleLeftDock"
     }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "r": "project_panel::Rename"
+    }
   }
 ]
