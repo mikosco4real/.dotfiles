@@ -4,8 +4,8 @@
   },
   "agent": {
     "default_model": {
-      "provider": "google",
-      "model": "gemini-2.5-pro-exp-03-25"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-latest"
     },
     "version": "2"
   },
