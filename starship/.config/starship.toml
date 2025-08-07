@@ -3,6 +3,7 @@
 
 # Sets user-defined palette
 add_newline = true
+command_timeout = 43200000
 # Palettes must be defined _after_ this line
 palette = "catppuccin_mocha"
 
