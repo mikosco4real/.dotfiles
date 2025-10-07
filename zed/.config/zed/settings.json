@@ -3,11 +3,11 @@
     "edit_prediction_provider": "zed"
   },
   "agent": {
+    "always_allow_tool_actions": true,
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-opus-4"
+      "model": "claude-opus-4-1"
     },
-    "version": "2"
   },
   "theme": "Catppuccin Mocha",
   "tab_size": 2,
