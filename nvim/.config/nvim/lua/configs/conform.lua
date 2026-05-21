@@ -1,4 +1,6 @@
-local options = {
+-- Ported from lua/configs/conform.lua in the old config.
+
+require("conform").setup({
     formatters_by_ft = {
         lua = { "stylua" },
         css = { "prettierd" },
@@ -10,10 +12,7 @@ local options = {
     },
 
     format_on_save = {
-        --   -- These options will be passed to conform.format()
         timeout_ms = 500,
         lsp_fallback = true,
     },
-}
-
-return options
+})
