@@ -103,6 +103,29 @@ mv ~/.config/nvim-new ~/.config/nvim
 mv ~/.local/share/nvim-new ~/.local/share/nvim
 ```
 
+**Gotcha — fix treesitter query symlinks after the data-dir rename.**
+`nvim-treesitter` (main branch) installs queries by symlinking each
+language's query dir under `~/.local/share/nvim/site/queries/<lang>` to
+the plugin's bundled `runtime/queries/<lang>`. Those symlinks store the
+**original absolute path** (`…/nvim-new/site/pack/…`), so after the
+`mv` they're all broken — parsers load but find no `highlights.scm`,
+which manifests as **LSP working but zero syntax highlighting** (all
+text is white). Repair in one shot:
+
+```bash
+src=~/.local/share/nvim/site/pack/core/opt/nvim-treesitter/runtime/queries
+dst=~/.local/share/nvim/site/queries
+cd "$dst"
+for link in $(find . -maxdepth 1 -type l ! -exec test -e {} \; -print); do
+    name="${link#./}"
+    rm "$link" && ln -s "$src/$name" "$name"
+done
+```
+
+Re-run after future `:TSInstall` rounds if you ever rename the data dir
+again. (Confirm none remain with the same `find … ! -exec test -e {} \;`
+check.)
+
 Your dotfiles `~/.dotfiles/nvim/.config/nvim` symlink is unaffected by
 the side-by-side test — the new config lives entirely under
 `~/.config/nvim-new` while you evaluate it.
