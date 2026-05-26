@@ -24,7 +24,9 @@ Common commands (run from `~/.dotfiles`):
 - `stow -R <pkg>` — re-stow after adding/removing files
 - `stow -D <pkg>` — unlink
 
-`.stow-local-ignore` keeps `README*`, `LICENSE*`, `.git`, and Zed's local-only state (`zed/conversations`, `zed/embeddings`, `zed/prompts`, `zed/themes`) out of the link set even though they live inside a package directory. Add to it when introducing files that should stay in-repo but never be symlinked.
+`.stow-local-ignore` keeps `README*`, `LICENSE*`, and `.git` out of the link set even though they live inside a package directory. Add to it when introducing files that should stay in-repo but never be symlinked.
+
+`zshrc/` and `zed/` are present on disk (and still managed by stow locally) but are **gitignored** while a cross-machine sync strategy is worked out — don't re-add them to tracking without checking with the user first.
 
 When adding a **new** dotfile, place it under a package at the path it should occupy relative to `$HOME` (create the package directory if needed), then re-stow.
 
@@ -35,10 +37,13 @@ This is the most substantive config in the repo. It is a **post-NvChad migration
 Key constraints when editing nvim config:
 
 - **`init.lua` step order is load-bearing.** `vim.pack.add()` must run before any `require()` of a plugin, and the `base46` highlight cache must exist before plugin configs `dofile()` it. Don't reorder the numbered steps without understanding why.
+- **Per-plugin config lives in `lua/setup.lua` → `lua/configs/<plugin>.lua`.** `init.lua` calls `require("setup")` between `vim.pack.add` and `require("nvchad")`; `setup.lua` dispatches into the individual files under `lua/configs/`. Plugin `setup{}` tweaks belong there, not in `plugins.lua`.
 - **No lazy-loading.** `vim.pack` (Neovim 0.12+) has no event/cmd/keys deferral and no `build` hooks. Anything that previously ran in a lazy.nvim `build` step is wired up explicitly after `vim.pack.add()` returns.
 - **Treesitter is pinned to the `main` branch** in `lua/plugins.lua`. The old `master` branch has injection-query breakage on nvim 0.12. The `main` branch requires the `tree-sitter` CLI on PATH (`brew install tree-sitter-cli`) to compile parsers.
 - **After changing the theme** in `lua/chadrc.lua`, run `:BuildHighlights` inside nvim, then restart. The user command is defined at the bottom of `init.lua` and rebuilds the base46 cache.
 - **LSP servers** are enabled in `lua/lsp.lua` via `vim.lsp.enable({...})` using nvim 0.11+ APIs (not `lspconfig.setup`). Per-server defaults come from `nvim-lspconfig`'s `lsp/<server>.lua` files on the runtimepath; only override fields go in `vim.lsp.config(...)`.
+- **Plugin updates** use `:Pack update` (replaces `:Lazy sync`); `:Pack` lists installed plugins. Mason packages update via `:Mason`.
+- **Side-by-side testing.** To try config changes without disturbing the live config, launch with `NVIM_APPNAME=nvim-new nvim` — `vim.pack` clones plugins into `~/.local/share/nvim-new/` and the stowed `~/.config/nvim` symlink stays untouched. See `nvim/.config/nvim/README.md` for the full swap-in procedure.
 - **Lock files** (`lazy-lock.json`, `nvim-pack-lock.json`) are gitignored at the repo root — don't commit them.
 
 ### Lua formatting
@@ -47,7 +52,6 @@ Key constraints when editing nvim config:
 
 ## Other packages — quick orientation
 
-- **`zshrc/`** — Oh My Zsh based. Inits pyenv, NVM, bun, Starship, and Laravel Herd's multi-version PHP env vars. When adding a tool that needs PATH/shims, add it here.
 - **`starship/`** — single `starship.toml`. Invoked by `eval "$(starship init zsh)"` in `.zshrc`.
 - **`tmux/`** — `.tmux.conf` only. Uses tpm; **tpm must be installed manually** (`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`) — it is not vendored.
-- **`kitty/`**, **`gitui/`**, **`zed/`** — terminal/editor configs. Zed's `conversations`, `embeddings`, `prompts`, and `themes` subdirs are intentionally excluded from stow (see `.stow-local-ignore`) because they are machine-local state, not config to share.
+- **`kitty/`**, **`gitui/`** — terminal / git-TUI configs.

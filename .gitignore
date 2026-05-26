@@ -1,2 +1,6 @@
 lazy-lock.json
 nvim-pack-lock.json
+
+# Temporarily untracked while a cross-machine sync strategy is worked out.
+zshrc/
+zed/
