@@ -53,5 +53,5 @@ Key constraints when editing nvim config:
 ## Other packages — quick orientation
 
 - **`starship/`** — single `starship.toml`. Invoked by `eval "$(starship init zsh)"` in `.zshrc`.
-- **`tmux/`** — `.tmux.conf` only. Uses tpm; **tpm must be installed manually** (`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`) — it is not vendored.
+- **`tmux/`** — `.tmux.conf` plus `.tmux/scripts/setup-session.sh`. Uses tpm; **tpm must be installed manually** (`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`) — it is not vendored. A `session-created` hook in `.tmux.conf` runs `setup-session.sh`, which builds a default dev layout (IDE→`nvim .`, GIT→`lazygit`, Terminal, Logs, Claude→`claude`) for every new session; same script is bound to `prefix + L` as a manual trigger. The script is idempotent (no-ops when the session already has >1 window). Editing either file requires `stow -R tmux` before the new symlinks take effect.
 - **`kitty/`**, **`gitui/`** — terminal / git-TUI configs.
